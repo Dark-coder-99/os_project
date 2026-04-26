@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Thread Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <!-- Header / Controls -->
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <div class="pulse-dot"></div>
+                </div>
+                <h1>Nexus Distributed Pool</h1>
+            </div>
+
+            <div class="global-telemetry">
+                <div class="stat-card">
+                    <span class="stat-label">Active Threads</span>
+                    <span class="stat-value" id="val-cores">8</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Queue Size</span>
+                    <span class="stat-value" id="val-queue">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">System Load</span>
+                    <span class="stat-value" id="val-load">0%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Tasks Computed</span>
+                    <span class="stat-value" id="val-done">0</span>
+                </div>
+            </div>
+
+            <div class="control-cluster">
+                <button id="btn-add-task" class="btn btn-outline">+ Add Task</button>
+                <button id="btn-add-batch" class="btn btn-primary">Generate Burst (100x)</button>
+                <button id="btn-reset" class="btn btn-danger">Flush / Reset</button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Area -->
+        <main class="dashboard-core">
+            
+            <!-- Pipeline Section -->
+            <section class="panel queue-panel">
+                <div class="panel-header">
+                    <h2>Task Pipeline Streaming</h2>
+                    <span class="badge" id="queue-badge">0 Pending</span>
+                </div>
+                <!-- Scalable conveyor belt -->
+                <div class="pipeline-container">
+                    <div class="pipeline-track" id="pipeline-track">
+                        <!-- Task items injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thread Matrix Section -->
+            <section class="panel matrix-panel">
+                <div class="panel-header">
+                    <h2>Processor Matrix</h2>
+                    <div class="matrix-controls">
+                        <span class="matrix-info">Scales dynamically based on workload</span>
+                        <div class="btn-group">
+                            <button id="btn-scale-down" class="btn btn-icon">-</button>
+                            <span class="core-count-label" id="lbl-pool-size">8 Core System</span>
+                            <button id="btn-scale-up" class="btn btn-icon">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Highly scalable CSS Grid wrapper -->
+                <div class="matrix-grid-wrapper">
+                    <div class="matrix-grid" id="threads-grid">
+                        <!-- Compact thread nodes injected here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

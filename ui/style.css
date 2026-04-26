@@ -1,0 +1,375 @@
+/* =======================================================
+   ENTERPRISE DARK THEME - HIGH DENSITY SCALABLE UI
+   ======================================================= */
+   
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --bg-base: #000000;
+    --bg-surface: #0a0a0a;
+    --bg-panel: #111111;
+    
+    --border-dim: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    
+    --accent: #3b82f6; /* Modern Blue */
+    --accent-glow: rgba(59, 130, 246, 0.2);
+    --success: #10b981; /* Emerald */
+    --success-glow: rgba(16, 185, 129, 0.2);
+    --danger: #ef4444;  /* Red */
+    
+    --idle-bg: #18181b;
+    --idle-border: #27272a;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.app-layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+}
+
+/* --- HEADER / TOPBAR --- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.brand-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: slowPulse 2s infinite alternate;
+}
+
+@keyframes slowPulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Global Telemetry */
+.global-telemetry {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--border-dim);
+}
+.stat-card:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+}
+
+.stat-value {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Controls */
+.control-cluster {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-dim);
+}
+.btn-outline:hover { background: var(--border-dim); border-color: var(--text-secondary); }
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+.btn-primary:hover { filter: brightness(1.2); }
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+.btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+
+
+/* --- MAIN DASHBOARD --- */
+.dashboard-core {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.panel {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.badge {
+    background: var(--idle-bg);
+    border: 1px solid var(--idle-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: 'Fira Code', monospace;
+}
+
+/* --- THE PIPELINE (SCALABLE HORIZONTAL QUEUE) --- */
+.queue-panel {
+    flex: 0 0 auto;
+}
+
+.pipeline-container {
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.01) 10px,
+        rgba(255,255,255,0.01) 20px
+    );
+}
+
+.pipeline-track {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+.pipeline-track::-webkit-scrollbar { height: 4px; }
+.pipeline-track::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+
+.task-item {
+    flex: 0 0 auto;
+    padding: 0.5rem 1rem;
+    background: var(--idle-bg);
+    border: 1px solid var(--border-dim);
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    animation: slideInLeft 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(50px) scale(0.8); opacity: 0; }
+    to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* --- THE MATRIX (SCALABLE GRID) --- */
+.matrix-panel {
+    flex: 1;
+    min-height: 0;
+}
+
+.matrix-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.matrix-info {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    background: var(--idle-bg);
+    border: 1px solid var(--border-dim);
+    border-radius: 6px;
+}
+
+.btn-group .btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+.btn-group .btn-icon:hover { background: rgba(255,255,255,0.1); }
+.core-count-label {
+    padding: 0 1rem;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.matrix-grid-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.matrix-grid-wrapper::-webkit-scrollbar { width: 6px; }
+.matrix-grid-wrapper::-webkit-scrollbar-thumb { background: var(--border-dim); border-radius: 4px; }
+
+/* The Grid! Highly scalable Auto-Fit! Fits up to 100+ cores */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: min-content;
+    gap: 1rem;
+}
+
+/* Compact Core UI */
+.core-node {
+    background: var(--bg-base);
+    border: 1px solid var(--idle-border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.core-node.active {
+    border-color: var(--success);
+    box-shadow: inset 0 0 10px var(--success-glow);
+}
+
+.core-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.core-title {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.core-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--idle-border);
+}
+.core-node.active .core-status {
+    background: var(--success);
+    box-shadow: 0 0 5px var(--success);
+}
+
+.core-payload {
+    min-height: 24px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.core-payload.idle-text { color: #52525b; }
+
+.core-progress-track {
+    width: 100%;
+    height: 4px;
+    background: var(--idle-bg);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.core-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--success);
+    transition: width 0.1s linear;
+}
